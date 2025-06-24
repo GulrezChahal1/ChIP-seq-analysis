@@ -30,11 +30,11 @@ Usage:
 
 Here we outline the steps involved in processing the ChIP-seq raw data to call out the peaks of interest and perform gene ontology. The following packages were installed to run the analysis:
 Reference genome: Danio rerio (Genome assembly:GRCz10) Zv10
-- [Quality check for sequencing data] (#fastqc)  
-- [Trimming the poor-quality reads and the adapters] (#TrimGalore)
-- [Alignment using STAR/BWA] (#star)
-- [Convert sam to bam format, sorting, indexing and removing duplicates] (#samtools)
-- [Calling peaks] (#macs2)
+- [Quality check for sequencing data](#fastqc)
+- [Trimming the poor-quality reads and the adapters](#TrimGalore)
+- [Alignment using STAR/BWA](#star)
+- [Convert sam to bam format, sorting, indexing and removing duplicates](#samtools)
+- [Calling peaks](#macs2)
 
 
 ### <a name="fastqc">Quality check for sequencing data </a>
@@ -42,7 +42,7 @@ Reference genome: Danio rerio (Genome assembly:GRCz10) Zv10
 ````
 fastqc -f fastq Sample_file.fastq
 ````
-### Trimming the poor-quality reads and the adapters
+### <a name="TrimGalore">Trimming the poor-quality reads and the adapter </a>
 
 - A q-cutoff of 28 and an adapter overlap (stringency) of 3nt are reasonable values for paired end files (here fwd reads are fastq1 and rev reads are fastq2) with the default illumina adapter, output will be a trimmed version of the file (eg. infile_trimmed.fq):
 ````
