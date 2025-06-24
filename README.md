@@ -37,18 +37,18 @@ Reference genome: Danio rerio (Genome assembly:GRCz10) Zv10
 - [Calling peaks] (#macs2)
 
 
-## <a name="fastqc">Quality check for sequencing data </a>
+### <a name="fastqc">Quality check for sequencing data </a>
 - Fastqc (Version 0.11.8)
 ````
 fastqc -f fastq Sample_file.fastq
 ````
-## Trimming the poor-quality reads and the adapters
+### Trimming the poor-quality reads and the adapters
 
 - A q-cutoff of 28 and an adapter overlap (stringency) of 3nt are reasonable values for paired end files (here fwd reads are fastq1 and rev reads are fastq2) with the default illumina adapter, output will be a trimmed version of the file (eg. infile_trimmed.fq):
 ````
 trim_galore -q 28 --paired --gzip --phred33 --stringency 3 Sample_fastq1.fq.gz Sample_fastq2.fq.gz
 ````
-## <a name="star">Alignment using STAR/BWA </a>
+### <a name="star">Alignment using STAR/BWA </a>
 - STAR (version 2.7.10b)
 -Parameters:
   Spliced Transcripts Alignment to a Reference (c) Alexander Dobin, 2009-2022
@@ -82,7 +82,7 @@ bwa index Danio_rerio.GRCz10.dna.toplevel.fa
 bwa mem -t 8 Danio_rerio.GRCz10.dna.toplevel.fa infile_trimmed.fq.gz > infile_aligned.sam
 ````
 
-## <a name="samtools">Convert sam to bam format, sorting the aligned reads and indexing</a>
+### <a name="samtools">Convert sam to bam format, sorting the aligned reads and indexing</a>
 
 - sam file to bam file conversion:
 ````
@@ -101,7 +101,7 @@ samtools index OutFile.sorted.bam
 samtools rmdup -s OutFile.sorted.bam OutFile.sorted_dedup.bam
 ````
 
-## <a name="macs2">Calling peaks</a>
+### <a name="macs2">Calling peaks</a>
 Run the above steps for both the H3Kme1 and contol sample file.
 -macs2 (version 2.1.0.20140616)
 ````
