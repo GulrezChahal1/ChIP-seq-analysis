@@ -1,7 +1,7 @@
 d# ZebrafishHeartEnhancers
  Zebrafish Heart Enhancers Discovery
 ## Description
-Pipeline for analysis of ChIP-Seq [data](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1057907) to obtain the Zebrafish Heart Enhancers [datasets](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252150).
+Pipeline for analysis of Zebrafish Heart [ChIP-Seq raw data](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1057907) to obtain the Zebrafish Heart Enhancers [datasets](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252150).
 
 Code for the manuscript: Gulrez Chahal^, Michael P. Eichenlaub^, Markus Tondl^, Michal Pawlak, Monika Mohenska, Lin Grimm, Lauren Bottrell, Mark Drvodelic, Sara Alaei, Jeannette Hallab, Lisa N. Waylen, Jose M. Polo, Cédric Blanpain, Nathan Palpant, Fernando Rossello, Minna-Liisa Änkö, Peter D. Currie, Benjamin M. Hogan, Cecilia Winata, Ekaterina Salimova, Hieu T. Nim*, Mirana Ramialison*. "An in vivo repertoire of zebrafish cardiomyocyte-specific cis-regulatory elements". 
 
