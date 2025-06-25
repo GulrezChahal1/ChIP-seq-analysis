@@ -53,13 +53,13 @@ Reference genome: Danio rerio (Genome assembly:GRCz10) Zv10
 ### <a name="fastqc">Quality check for sequencing data </a>
 - Fastqc (Version 0.11.8)
 ````
-fastqc -f fastq Sample_file.fastq
+fastqc -f fastq SRR27368651.fastq
 ````
 ### <a name="TrimGalore">Trimming the poor-quality reads and the adapter </a>
 
-- A q-cutoff of 28 and an adapter overlap (stringency) of 3nt are reasonable values for paired end files (here fwd reads are fastq1 and rev reads are fastq2) with the default illumina adapter, output will be a trimmed version of the file (eg. infile_trimmed.fq):
+- A q-cutoff of 28 and an adapter overlap (stringency) of 3nt are reasonable values for paired end files (here fwd reads are fastq1 and rev reads are fastq2) with the default illumina adapter, output will be a trimmed compressed version of the file (eg. SRR27368651_trimmed.fq.gz):
 ````
-trim_galore -q 28 --paired --gzip --phred33 --stringency 3 Sample_fastq1.fq.gz Sample_fastq2.fq.gz
+trim_galore -q 28 --phred33 --fastqc --gzip --stringency 3 SRR27368651.fastq
 ````
 ### <a name="star">Alignment using STAR/BWA </a>
 - STAR (version 2.7.10b)
@@ -78,7 +78,7 @@ STAR --runMode genomeGenerate \
      --genomeFastaFiles Danio_rerio.GRCz10.dna.toplevel.fa \
      --runThreadN 8
 
-STAR --runThreadN 8 --outSAMattributes All --genomeLoad NoSharedMemory --readFilesCommand zcat -- genomeDir /path/to/genome/star/ --readFilesIn infile_trimmed.fq.gz --outFileNamePrefix mapped_
+STAR --runThreadN 8 --outSAMattributes All --genomeLoad NoSharedMemory --readFilesCommand zcat -- genomeDir /path/to/genome/star/ --readFilesIn SRR27368651_trimmed.fq.gz --outFileNamePrefix aligned_
 ```` 
 
 - Alternatively BWA (version 0.7.18-r1243-dirt)
@@ -92,32 +92,32 @@ gunzip Danio_rerio.GRCz10.dna.toplevel.fa.gz
 bwa index Danio_rerio.GRCz10.dna.toplevel.fa
 
 
-bwa mem -t 8 Danio_rerio.GRCz10.dna.toplevel.fa infile_trimmed.fq.gz > infile_aligned.sam
+bwa mem -t 8 Danio_rerio.GRCz10.dna.toplevel.fa SRR27368651_trimmed.fq.gz > SRR27368651_trimmed_aligned.sam
 ````
 
 ### <a name="samtools">Convert sam to bam format, sorting the aligned reads and indexing</a>
 
 - sam file to bam file conversion:
 ````
-samtools view -bSo OutFile.bam infile_aligned.sam
+samtools view -bSo SRR27368651_trimmed_aligned.bam SRR27368651_trimmed_aligned.sam
 ````
 - Sorting the aligned coordinates:
 ````
-samtools sort OutFile.bam OutFile.sorted.bam
+samtools sort SRR27368651_trimmed_aligned.bam SRR27368651_trimmed_aligned_sorted.bam
 ````
 - Indexing the bam file:
 ````
-samtools index OutFile.sorted.bam
+samtools index SRR27368651_trimmed_aligned_sorted.bam
 ````
 - Remove duplicates:
 ````
-samtools rmdup -s OutFile.sorted.bam OutFile.sorted_dedup.bam
+samtools rmdup -s SRR27368651_trimmed_aligned_sorted.bam SRR27368651_trimmed_aligned_sorted_dedup.bam
 ````
 
 ### <a name="macs2">Calling peaks</a>
-Run the above steps for both the H3Kme1 and contol sample file.
+Run the above steps for both the H3Kme1 and the corresponding contol (Input) file.
 -macs2 (version 2.1.0.20140616)
 ````
-macs2 callpeak -t OutFileH3K4me1.sorted_dedup.bam -c OutFileInput.sorted_dedup.bam --format BAM -g 1.5e9 --broad –name OutFileH3K4me1_sorted_dedup 
+macs2 callpeak -t SRR27368651_trimmed_aligned_sorted_dedup.bam -c SRR27368649_trimmed_aligned_sorted_dedup.bam --format BAM -g 1.5e9 --broad –name OutFileH3K4me1_sorted_dedup 
 ````
 The output peaks (potential cREs) were obtained in the BED file format for zebrafish genome ZV10 version. These were lifted over to zv9 to run gene ontology analysis using GREAT (version 3.0.0).
