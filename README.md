@@ -64,11 +64,11 @@ trim_galore -q 28 --phred33 --fastqc --gzip --stringency 3 SRR27368651.fastq
 ### <a name="star">Alignment using STAR/BWA </a>
 - STAR (version 2.7.10b)
 -Parameters:
-  Spliced Transcripts Alignment to a Reference (c) Alexander Dobin, 2009-2022
-  genome build: zv10 , 
-  indexing tool: STAR
-  parameters: default
-  masking options: none
+  --Spliced Transcripts Alignment to a Reference (c) Alexander Dobin, 2009-2022
+  --genome build: zv10 , 
+  --indexing tool: STAR
+  --parameters: default
+  --masking options: none
 ````
 wget http://ftp.ensembl.org/pub/release-110/fasta/danio_rerio/dna/Danio_rerio.GRCz10.dna.toplevel.fa.gz
 gunzip Danio_rerio.GRCz10.dna.toplevel.fa.gz
