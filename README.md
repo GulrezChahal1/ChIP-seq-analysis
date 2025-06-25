@@ -1,12 +1,25 @@
 d# ZebrafishHeartEnhancers
  Zebrafish Heart Enhancers Discovery
 ## Description
-Pipeline for ChIP-Seq analyses of the Zebrafish Heart Enhancers [datasets](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252150).
+Pipeline for analysis of ChIP-Seq [data](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1057907) to obtain the Zebrafish Heart Enhancers [datasets](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252150).
 
 Code for the manuscript: Gulrez Chahal^, Michael P. Eichenlaub^, Markus Tondl^, Michal Pawlak, Monika Mohenska, Lin Grimm, Lauren Bottrell, Mark Drvodelic, Sara Alaei, Jeannette Hallab, Lisa N. Waylen, Jose M. Polo, Cédric Blanpain, Nathan Palpant, Fernando Rossello, Minna-Liisa Änkö, Peter D. Currie, Benjamin M. Hogan, Cecilia Winata, Ekaterina Salimova, Hieu T. Nim*, Mirana Ramialison*. "An in vivo repertoire of zebrafish cardiomyocyte-specific cis-regulatory elements". 
 
 Languages: Bash. Operating systems: Windows, Linux, Mac OSX. Fully tested on Linux Ubuntu 20.04. 
 
+## Downloading the raw data
+The following fastq files can be downloaded from GEO using the code below:
+- SRR27368649: GFP positive Input
+- SRR27368650: GFP negative H3K4me1
+- SRR27368651: GFP positive H3K4me1
+- SRR27368652: GFP negative input
+```
+wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc=SRR27368649 -o SRR27368649.fastq.gz
+wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc=SRR27368650 -o SRR27368650.fastq.gz
+wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc=SRR27368651 -o SRR27368651.fastq.gz
+wget https://trace.ncbi.nlm.nih.gov/Traces/sra-reads-be/fastq?acc=SRR27368652 -o SRR27368652.fastq.gz
+gunzip *.gz
+```
 ## Getting the Source Code
 
 To get the source code, please click the "fork" button in the upper-right and then add this repo as an upstream source:
