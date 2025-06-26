@@ -1,4 +1,4 @@
-d# ZebrafishHeartEnhancers
+# ZebrafishHeartEnhancers
  Zebrafish Heart Enhancers Discovery
 ## Description
 Pipeline for analysis of Zebrafish Heart [ChIP-Seq raw data](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1057907) to obtain the Zebrafish Heart Enhancers [datasets](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE252150).
